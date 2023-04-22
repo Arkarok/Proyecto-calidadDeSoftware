@@ -1,0 +1,4 @@
+3 vistas:
+- Formulario de registro cuando es la primera vez que entra
+- Ingreso y salida al edificio (ingresa la identificacion)
+- Mostrar el logger

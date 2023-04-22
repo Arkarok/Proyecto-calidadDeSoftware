@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KillTheReptiles/pt-hotel.git"
+    "url": "git+https://github.com/Arkarok/Proyecto-calidadDeSoftware.git"
   },
   "keywords": [],
-  "author": "Duvan Diaz",
+  "author": "ARKAROK",
   "license": "",
   "bugs": {
-    "url": "https://github.com/KillTheReptiles/pt-hotel/issues"
+    "url": "https://github.com/Arkarok/Proyecto-calidadDeSoftware/issues"
   },
-  "homepage": "https://github.com/KillTheReptiles/pt-hotel#readme",
+  "homepage": "https://github.com/Arkarok/Proyecto-calidadDeSoftware#readme",
   "devDependencies": {
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",

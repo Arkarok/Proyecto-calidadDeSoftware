@@ -4,10 +4,7 @@ import helmet from "helmet";
 
 import pkg from "../package.json";
 
-import usuarioRoutes from "./routes/usuario.routes";
-import habitacionRoutes from "./routes/habitacion.routes";
-import reservaRoutes from "./routes/reserva.routes";
-
+import personRoutes from "./routes/person.routes";
 const app = express();
 
 // Settings
@@ -24,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 // Welcome Routes
 app.get("/", (req, res) => {
   res.json({
-    message: "Prueba Técnina - Hotel",
+    message: "Control de ingreso y salida edificio",
     name: app.get("pkg").name,
     version: app.get("pkg").version,
     description: app.get("pkg").description,
@@ -33,8 +30,6 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-app.use("/usuario", usuarioRoutes);
-app.use("/habitacion", habitacionRoutes);
-app.use("/reserva", reservaRoutes);
+app.use("/person", personRoutes);
 
 export default app;
