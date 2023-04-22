@@ -3,7 +3,11 @@ const router = Router();
 
 import * as personCtrl from "../controllers/person.controller";
 
-// router.post("/create", personCtrl.createUsuario);
+router.get("/", personCtrl.renderIndex);
+router.get("/registro", personCtrl.renderRegistroForm);
+router.get("/ingreso", personCtrl.renderIngreso);
+router.get("/logger", personCtrl.renderLogger);
+router.post("/create", personCtrl.createUsuario);
 
 // router.put("/change-descuento", personCtrl.changeDescuento);
 
