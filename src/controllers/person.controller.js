@@ -1,4 +1,4 @@
-import Usuario from "../models/Person";
+import Person from "../models/Person";
 
 export const renderRegistroForm = async (req, res) => {
   res.render("registros/newRegistro");
@@ -19,18 +19,20 @@ export const renderIndex = async (req, res) => {
 export const createUsuario = async (req, res) => {
   const { id, nombre, tipo_usuario } = req.body;
   try {
-    res.render("registros/newRegistro");
-    const users = await Usuario.find({ identificacion: identificacion });
+    const users = await Person.find({ id: id });
     if (users[0])
       return res.status(400).json({ message: "El usuario ya existe" }); // si el usuario ya existe, no se crea
 
-    const newUsuario = new Usuario({
-      id,
-      nombre,
-      tipo_usuario,
+    const newUsuario = new Person({
+      ID: id,
+      name: nombre,
+      personType: tipo_usuario,
     });
 
-    const usuarioSaved = await newUsuario.save();
+    console.log(newUsuario);
+
+    await newUsuario.save();
+    res.render("registros/newRegistro");
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: "ha ocurrido un error" });

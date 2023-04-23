@@ -7,7 +7,7 @@ router.get("/", personCtrl.renderIndex);
 router.get("/registro", personCtrl.renderRegistroForm);
 router.get("/ingreso", personCtrl.renderIngreso);
 router.get("/logger", personCtrl.renderLogger);
-router.post("/create", personCtrl.createUsuario);
+router.post("/registros/newRegistro", personCtrl.createUsuario);
 
 // router.put("/change-descuento", personCtrl.changeDescuento);
 

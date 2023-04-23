@@ -12,4 +12,4 @@ const personSchema = new Schema(
   }
 );
 
-export default model("usuario", personSchema);
+export default model("Person", personSchema);
