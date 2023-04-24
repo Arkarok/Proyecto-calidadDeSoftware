@@ -10,7 +10,9 @@ export const renderIngreso = async (req, res) => {
 };
 
 export const renderLogger = async (req, res) => {
-  res.render("logger");
+  const logs = await Logger.find();
+  console.log(logs);
+  res.render("logger", { logs });
 };
 
 export const renderIndex = async (req, res) => {
@@ -52,14 +54,14 @@ export const getLogger = async (req, res) => {
 };
 
 export const saveLog = async (req, res) => {
-  const { personID, entered } = req.body;
+  const { id, entered } = req.body;
 
   console.log(entered);
   
   const now = new Date();
 
   const newLog = new Logger({
-    personID,
+    personID: id,
     entered: entered != null ? true : false,
     when: now
   });
