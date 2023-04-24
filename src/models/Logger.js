@@ -3,8 +3,8 @@ import { Schema, model } from "mongoose";
 const loggerSchema = new Schema(
   {
     personID: String,
-    enteredAt: Date,
-    exitAt: Date
+    entered: Boolean,
+    when: Date
   },
   {
     timestamps: true,
@@ -12,4 +12,4 @@ const loggerSchema = new Schema(
   }
 );
 
-export default model("Reserva", loggerSchema);
+export default model("Logger", loggerSchema);

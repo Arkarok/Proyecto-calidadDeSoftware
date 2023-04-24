@@ -1,3 +1,4 @@
+import Logger from "../models/Logger";
 import Person from "../models/Person";
 
 export const renderRegistroForm = async (req, res) => {
@@ -19,9 +20,9 @@ export const renderIndex = async (req, res) => {
 export const createUsuario = async (req, res) => {
   const { id, nombre, tipo_usuario } = req.body;
   try {
-    const users = await Person.find({ id: id });
-    if (users[0])
-      return res.status(400).json({ message: "El usuario ya existe" }); // si el usuario ya existe, no se crea
+    const user = await Person.findOne({ id });
+    if (user)
+      return res.status(400).json({ message: "El usuario ya existe" });
 
     const newUsuario = new Person({
       ID: id,
@@ -29,10 +30,9 @@ export const createUsuario = async (req, res) => {
       personType: tipo_usuario,
     });
 
-    console.log(newUsuario);
-
-    await newUsuario.save();
-    res.render("registros/newRegistro");
+    const userSaved = await newUsuario.save();
+    
+    return userSaved;
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: "ha ocurrido un error" });
@@ -40,113 +40,33 @@ export const createUsuario = async (req, res) => {
 };
 
 export const getLogger = async (req, res) => {
-  //Preguntar por el descuento ofrecido a los clientes habituales
+  const { personID } = req.body;
 
-  const { tipo_usuario } = req.body;
+  let logs;
+  if (personID)
+    logs = await Logger.findOne({ personID });
+  else
+    logs = await Logger.find();
 
-  if (tipo_usuario != 1)
-    return res.status(400).json({ message: "No autorizado" });
-
-  try {
-    const descuento = await Descuento.find({});
-    if (!descuento[0])
-      return res.status(400).json({ message: "No hay descuento" });
-    return res
-      .status(200)
-      .json(
-        "El descuento para los clientes habituales es actualmente del: " +
-          descuento[0].descuento +
-          "%"
-      );
-  } catch (error) {
-    console.log(error);
-  }
+  return logs;
 };
 
-/*export const changeDescuento = async (req, res) => {
-  //Cambiar el valor del descuento ofrecido a los clientes habituales
-  const { tipo_usuario, nuevoDescuento } = req.body;
+export const saveLog = async (req, res) => {
+  const { personID, entered } = req.body;
 
-  if (tipo_usuario != 2)
-    return res.status(400).json({ message: "No autorizado" });
+  console.log(entered);
+  
+  const now = new Date();
 
-  try {
-    const descuento = await Descuento.find({});
+  const newLog = new Logger({
+    personID,
+    entered: entered != null ? true : false,
+    when: now
+  });
+  
+  const logSaved = await newLog.save();
 
-    if (!descuento[0]) {
-      const newDescuento = new Descuento({
-        descuento: nuevoDescuento,
-      });
+  console.log(logSaved);
 
-      const descuentoSaved = await newDescuento.save();
-      console.log(descuentoSaved);
-      return res
-        .status(200)
-        .json({ message: `Descuento actualizado a ${nuevoDescuento}%` });
-    }
-
-    const descuentoFinal = await Descuento.updateOne(
-      {},
-      { descuento: nuevoDescuento },
-      { new: true }
-    );
-    return res
-      .status(200)
-      .json({ message: `Descuento actualizado a ${nuevoDescuento}%` });
-  } catch (error) {
-    console.log(error);
-  }
+  return logSaved;
 };
-
-export const getDescuento = async (req, res) => {
-  //Preguntar por el descuento ofrecido a los clientes habituales
-
-  const { tipo_usuario } = req.body;
-
-  if (tipo_usuario != 1)
-    return res.status(400).json({ message: "No autorizado" });
-
-  try {
-    const descuento = await Descuento.find({});
-    if (!descuento[0])
-      return res.status(400).json({ message: "No hay descuento" });
-    return res
-      .status(200)
-      .json(
-        "El descuento para los clientes habituales es actualmente del: " +
-          descuento[0].descuento +
-          "%"
-      );
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const clientesHabituales = async (req, res) => {
-  //Listado de clientes habituales
-  const { tipo_usuario } = req.body;
-
-  if (tipo_usuario != 1)
-    return res.status(400).json({ message: "No autorizado" });
-
-  try {
-    const clientesHabituales = await Usuario.find({ tipo_usuario: 3 });
-    return res.status(200).json(clientesHabituales);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const gananciasMensuales = async (req, res) => {
-  //Calcular las ganancias que tendrán en un mes especificado (considere que todos los meses tienen treinta días).
-  const { tipo_usuario, fecha } = req.body;
-
-  if (tipo_usuario != 2)
-    return res.status(400).json({ message: "No autorizado" });
-
-  try {
-    const reservas = await Reserva.find({});
-  } catch (error) {
-    console.log(error);
-  }
-};*/
