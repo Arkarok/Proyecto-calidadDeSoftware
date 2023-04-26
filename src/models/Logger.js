@@ -4,7 +4,7 @@ const loggerSchema = new Schema(
   {
     personID: String,
     entered: Boolean,
-    when: Date
+    when: Date,
   },
   {
     timestamps: true,

@@ -1,3 +1,13 @@
 body{
     background-color: #D4E6F1;
 }
+
+.card{
+    display: flex;
+    box-shadow: 0 5px 10px #94EAB9;
+    border-radius: 10px;
+}
+
+.card-body{
+    align-items: center;
+}
