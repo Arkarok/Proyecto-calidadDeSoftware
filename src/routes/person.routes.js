@@ -9,6 +9,5 @@ router.get("/ingreso", personCtrl.renderIngreso);
 router.get("/logger", personCtrl.renderLogger);
 router.post("/registros/newRegistro", personCtrl.createUsuario);
 router.post("/ingresos/newIngreso", personCtrl.saveLog);
-//router.post("/ingresos/allIngresos", personCtrl.prepareLogger);
 
 export default router;
