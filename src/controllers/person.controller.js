@@ -12,7 +12,7 @@ export const renderIngreso = async (req, res) => {
 export const renderLogger = async (req, res) => {
   const logs = await Logger.find().lean();
   console.log(logs);
-  res.render("ingresos/allIngresos", { logs });
+  res.render("logger", { logs });
 };
 
 export const renderIndex = async (req, res) => {
@@ -22,8 +22,8 @@ export const renderIndex = async (req, res) => {
 export const createUsuario = async (req, res) => {
   const { id, nombre, tipo_usuario } = req.body;
   try {
-    const user = await Person.findOne({ id });
-    if (user) return res.status(400).json({ message: "El usuario ya existe" });
+    const user = await Person.findOne({ ID: id });
+    if (user) return res.status(400).json("El usuario ya existe");
 
     const newUsuario = new Person({
       ID: id,

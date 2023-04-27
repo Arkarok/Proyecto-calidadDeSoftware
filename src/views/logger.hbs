@@ -1,3 +1,18 @@
-<pre>
-    {{logs}}
-</pre>
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Cedula</th>
+      <th>Entra/Sale</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each logs}}
+      <tr>
+        <td>{{this.personID}}</td>
+        <td>{{this.entered}}</td>
+        <td>{{this.when}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
