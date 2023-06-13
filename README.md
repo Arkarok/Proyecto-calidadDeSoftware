@@ -1,4 +1,4 @@
-# Prueba Técnica - Recepcion
+# Prueba Técnica - Recepción
 
 ![](https://img.shields.io/badge/Project%20Version-0.0.1-brightgreen) ![](https://img.shields.io/badge/node-%3E=%2016.0.0-brightgreen)
 
@@ -15,7 +15,7 @@ Para correr el proyecto necesitas tener instalado:
 
 ## Backend dependencies:
 
-Para correr el servicio de Node.js necesitas instalar las dependencias. Solo pon los siguientes comandos dentro de la carpeta PT-HOTEL:
+Para correr el servicio de Node.js necesitas instalar las dependencias. Solo pon los siguientes comandos dentro de la carpeta donde sea alojado el proyecto:
 
 `npm install express dotenv  mongoose morgan helmet`
 
